@@ -1,0 +1,5 @@
+#ssengerEnabled On
+PassengerLoadShellEnvVars On
+PassengerAppRoot /home/nagasong/CrossHash
+PassengerRuby /usr/local/ruby20/bin/ruby
+RackEnv development

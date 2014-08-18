@@ -1,0 +1,38 @@
+<div id="container" style="width: 100%;min-height: 500px;margin: auto;"></div>
+
+<div id="container2">
+	<div id="content">
+		<ul class="nav nav-tabs" role="tablist">
+		    <li class="active"><a href="#tabs-1" role="tab" data-toggle="tab">Overview</a></li>
+		    <li><a href="#tabs-2"  role="tab" data-toggle="tab">Hashtags</a></li>
+		    <li><a href="#tabs-3"  role="tab" data-toggle="tab">Tweets</a></li>
+		</ul>
+		<div class="tab-content">
+			<div id="tabs-1" class="tab-pane active">
+				<p><%= @hashtag_count %></p>
+				<p><%= @root_hashtag %></p>
+			</div>
+			<div id="tabs-2" class="tab-pane">
+				<p>Not yet</p>
+			</div>
+			<div id="tabs-3" class="tab-pane">
+				<p>Click on a relationship, but not really</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	var data = <%= @graph.to_json.html_safe %>;
+	sigma.renderers.def = sigma.renderers.canvas
+	var s = new sigma();
+	s.addRenderer({
+	  container: document.getElementById('container')
+	});
+	s.graph.read(data);
+
+    s.startForceAtlas2();
+	s.refresh();
+	//sigma.plugins.dragNodes(s, s.renderers[0]);
+	sigma.plugins.relativeSize(s, 3);
+</script>

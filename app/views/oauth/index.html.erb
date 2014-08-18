@@ -1,0 +1,18 @@
+<div id="container" style="max-width: 800px;height: 800px;margin: auto;"></div>
+
+
+<pre><%= JSON.pretty_generate(@out1) %></pre>
+<pre><%= JSON.pretty_generate(@out2) %></pre>
+
+<script>
+	var data = <%= @graph.to_json.html_safe %>;
+	var s = new sigma();
+	s.addRenderer({
+	  container: document.getElementById('container')
+	});
+	s.graph.read(data);
+
+    s.startForceAtlas2();
+	s.refresh();
+	
+</script>
